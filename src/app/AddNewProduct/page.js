@@ -1,7 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, {useState} from "react";
 import NavBar from "@/components/NavBar";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddNewProduct = () => {
     const [productName, setProductName] = useState("");
@@ -20,12 +23,28 @@ const AddNewProduct = () => {
         }
     };
 
+    const postNewProduct = (event) => {
+        event.preventDefault();
+        axios.post('http://localhost:8080/shop/product/add', {
+            name: productName,
+            price: price
+        })
+            .then((response) => {
+                console.log(response.data);
+                toast.success("Producto agregado con éxito");
+            })
+            .catch((error) => {
+                toast.error(`Error: ${error.response ? error.response.data : error.message}`);
+            });
+    };
+
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "30px"}}>
             <NavBar />
+            <ToastContainer />
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "30px"}}>
-                <h1>Add new product:</h1>
-                <form style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                <h1>Añadir nuevo producto:</h1>
+                <form onSubmit={postNewProduct} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px"}}>
                         <p style={{ fontSize: "1.5em", color: "white" }} align={"center"}>Nombre de producto:</p>
                         <input
@@ -38,7 +57,7 @@ const AddNewProduct = () => {
                     </div>
 
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px"}}>
-                        <p style={{ fontSize: "1.5em", color: "white" }} align={"center"}>Price:</p>
+                        <p style={{ fontSize: "1.5em", color: "white" }} align={"center"}>Precio:</p>
                         <input
                             id="product-price"
                             type="number"
@@ -49,7 +68,9 @@ const AddNewProduct = () => {
                         />
                     </div>
 
-                    <button style={{backgroundColor: "green", color: "white", borderRadius: "5px"}}>Add</button>
+                    <button type="submit" style={{backgroundColor: "green", color: "white", borderRadius: "5px"}}>
+                        Agregar
+                    </button>
                 </form>
             </div>
         </div>
