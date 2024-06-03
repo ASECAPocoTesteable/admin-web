@@ -25,7 +25,7 @@ const AddNewProduct = () => {
 
     const postNewProduct = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:8080/shop/product/add', {
+        axios.post('http://controltowerpt:8080/shop/product/add', {
             name: productName,
             price: price
         })
