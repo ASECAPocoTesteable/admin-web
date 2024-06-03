@@ -26,7 +26,9 @@ const ShipmentOverviewPage = () => {
                     <h1>Orders overview:</h1>
                     {orders.length > 0 ? (
                         orders.map(order => (
-                            <OrderCard key={order.id} orderId={order.id} clientDirection={order.clientDirection} status={order.state} products={order.productOrders} />
+                            <OrderCard key={order.id} orderId={order.id}
+                                       clientDirection={order.clientDirection} status={order.state}
+                                       warehouseDirection={order.warehouseDirection} products={order.productOrders} />
                         ))
                     ) : (
                         <p>No orders available</p>
