@@ -41,7 +41,7 @@ const ModifyProductPricePage = () => {
         event.preventDefault();
         if (!selectedProduct) return;
 
-        axios.put('http://controltowerpt:8080/shop/update/product/price', {
+        axios.put('http://localhost:8080/shop/update/product/price', {
             id: selectedProduct.id,
             price: newPrice
         })
