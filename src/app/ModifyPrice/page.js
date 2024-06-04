@@ -12,7 +12,7 @@ const ModifyProductPricePage = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get('http://controltowerpt:8080/product/getAll')
+        axios.get('http://localhost:8080/product/getAll')
             .then(response => {
                 setProducts(response.data);
             })

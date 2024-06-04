@@ -9,7 +9,7 @@ const ShipmentOverviewPage = () => {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        axios.get('http://controltowerpt:8080/order/getAll')
+        axios.get('http://localhost:8080/order/getAll')
             .then(response => {
                 setOrders(response.data);
             })
