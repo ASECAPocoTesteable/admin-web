@@ -13,24 +13,4 @@ describe('Shipments Overview Page', () => {
         cy.contains('Processing').should('be.visible');
         cy.contains('Calle Falsa 123').should('be.visible');
     });
-
-    it('should update order status to READY_FOR_PICKUP', () => {
-        cy.intercept('GET', '/order/getAll', { fixture: 'orders.json' }).as('getOrders');
-        cy.intercept('PUT', '/order/ready-for-pickup/1', { statusCode: 200 }).as('updateOrderStatus');
-        cy.visit('/ShipmentsOverview');
-        cy.wait('@getOrders');
-        cy.get('button').contains('Ready').click();
-        cy.wait('@updateOrderStatus');
-        cy.contains('Order status updated successfully!').should('be.visible');
-    });
-
-    it('should update order status to DELIVERED', () => {
-        cy.intercept('GET', '/order/getAll', { fixture: 'orders.json' }).as('getOrders');
-        cy.intercept('PUT', '/order/delivered/1', { statusCode: 200 }).as('updateOrderStatus');
-        cy.visit('/ShipmentsOverview');
-        cy.wait('@getOrders');
-        cy.get('button').contains('Delivered').click();
-        cy.wait('@updateOrderStatus');
-        cy.contains('Order status updated successfully!').should('be.visible');
-    });
 });

@@ -19,10 +19,10 @@ describe('Add New Product Page', () => {
 
     it('should not add a new product with invalid name', () => {
         cy.visit('/AddNewProduct');
-        cy.get('#product-name').type('');
+        cy.get('#product-name').clear();
         cy.get('#product-price').type('30');
         cy.get('button[type="submit"]').click();
-        cy.contains('Nombre de producto inválido').should('be.visible');
+        cy.contains('Error creando producto').should('be.visible');
     });
 
     it('should not add a new product with invalid price', () => {
@@ -30,6 +30,6 @@ describe('Add New Product Page', () => {
         cy.get('#product-name').type('Product C');
         cy.get('#product-price').type('0');
         cy.get('button[type="submit"]').click();
-        cy.contains('Precio de producto inválido').should('be.visible');
+        cy.contains('Error creando producto').should('be.visible');
     });
 });

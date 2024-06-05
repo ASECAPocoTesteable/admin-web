@@ -34,7 +34,7 @@ const AddNewProduct = () => {
                 toast.success("Producto agregado con éxito");
             })
             .catch((error) => {
-                toast.error(`Error: ${error.response ? error.response.data : error.message}`);
+                toast.error(`Error creando producto`);
             });
     };
 

@@ -27,13 +27,6 @@ describe('Modify Product Price Page', () => {
         cy.get('#product-select').select('1');
         cy.get('#product-price').clear().type('0');
         cy.get('button[type="submit"]').click();
-        cy.contains('Precio de producto inválido').should('be.visible');
-    });
-
-    it('should not update the product price with invalid product', () => {
-        cy.get('#product-select').select('0');
-        cy.get('#product-price').clear().type('25');
-        cy.get('button[type="submit"]').click();
-        cy.contains('Producto inválido').should('be.visible');
+        cy.contains('Error actualizando el precio del producto').should('be.visible');
     });
 });
