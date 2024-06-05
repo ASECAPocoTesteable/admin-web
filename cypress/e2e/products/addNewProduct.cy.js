@@ -16,4 +16,20 @@ describe('Add New Product Page', () => {
         cy.wait('@addProduct');
         cy.contains('Producto agregado con éxito').should('be.visible');
     });
+
+    it('should not add a new product with invalid name', () => {
+        cy.visit('/AddNewProduct');
+        cy.get('#product-name').type('');
+        cy.get('#product-price').type('30');
+        cy.get('button[type="submit"]').click();
+        cy.contains('Nombre de producto inválido').should('be.visible');
+    });
+
+    it('should not add a new product with invalid price', () => {
+        cy.visit('/AddNewProduct');
+        cy.get('#product-name').type('Product C');
+        cy.get('#product-price').type('0');
+        cy.get('button[type="submit"]').click();
+        cy.contains('Precio de producto inválido').should('be.visible');
+    });
 });
