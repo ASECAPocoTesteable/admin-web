@@ -50,7 +50,7 @@ const ModifyProductPricePage = () => {
                 toast.success("Precio del producto actualizado con éxito");
             })
             .catch((error) => {
-                toast.error(`Error: ${error.response ? error.response.data : error.message}`);
+                toast.error(`Error actualizando el precio del producto`);
             });
     };
 

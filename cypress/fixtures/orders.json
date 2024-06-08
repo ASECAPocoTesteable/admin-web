@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "clientDirection": "Avenida Siempreviva 742",
+    "state": "Processing",
+    "warehouseDirection": "Calle Falsa 123",
+    "productOrders": [
+      { "name": "Product A", "price": 20, "quantity": 2 },
+      { "name": "Product B", "price": 10, "quantity": 1 }
+    ]
+  }
+]
